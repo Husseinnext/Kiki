@@ -17,14 +17,19 @@ class ListingsController < ApplicationController
     @listing = Listing.new
     end
 
-    def update
-       @listing.update(listing_params)
-       @listing.user_id = current_user.id
-       redirect_to @listing
+    def edit
+    	@listing = Listing.find(params[:id])
+  	end
+
+  	def update
+      @listing = Listing.find(params[:id])
+        if @listing.update(listing_params)
+          redirect_to @listing
+        else
+          render 'edit'
+        end
     end
 
-    def edit
-    end
 
     def show
     @listings = Listing.find(params[:id])
