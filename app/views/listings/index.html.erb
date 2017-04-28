@@ -1,6 +1,3 @@
-<h1>Static#index</h1>
-<p>Find me in app/views/static/index.html.erb</p>
-
 
 <%= form_for @listing do |form| %>
   <%= form.label :specifications %>
@@ -16,7 +13,6 @@
 <% if @listings.nil? %>
      <p>There are no listing at the moment</p>
 <% else %>
-
     <h1>THE LIST</h1>
     <% @listings.each do |listing| %>
     <div class="row">
