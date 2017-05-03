@@ -1,4 +1,8 @@
 
+
+
+<!-- <%# raw @listings.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %> -->
+
 <%= form_for @listing do |form| %>
   <%= form.label :specifications %>
   <%= form.text_field :specifications %>
@@ -6,24 +10,27 @@
   <%= form.country_select :country %>
   <%= form.label :cost %>
   <%= form.number_field :cost %>
-
+  <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :content %>
+  <%= form.file_field :photos, multiple: true %>
   <%= form.submit %>
 <% end %>
 
 <% if @listings.nil? %>
      <p>There are no listing at the moment</p>
 <% else %>
-    <h1>THE LIST</h1>
     <% @listings.each do |listing| %>
     <div class="row">
-      <div class="col-md-6">
-      <img src="smiley.gif" alt="recommended" height="100px" width="100px">
-    </div>
+      <% listing.photos.each do |image| %>
+          <%= image_tag image.thumb.url %>
+      <% end %>
     <div class="col-md-6">
       <p>
-    <%=link_to("#{listing.specifications} in #{listing.country}", listing)%>
+       <%=link_to("#{listing.specifications} in #{listing.country}", listing)%>
       </p>
     <p><%= "Price : #{listing.cost}" %></p>
+    <% @listing.tags.each do |t| %>
+      <%= t.content %>
+    <% end %>
     </div>
   </div>
   <% end %>

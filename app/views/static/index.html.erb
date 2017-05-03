@@ -9,7 +9,7 @@
   <%= form.country_select :country %>
   <%= form.label :cost %>
   <%= form.number_field :cost %>
-
+  <%= form.file_field :photos, multiple: true %>
   <%= form.submit %>
 <% end %>
 
@@ -20,12 +20,10 @@
     <h1>THE LIST</h1>
     <% @listings.each do |listing| %>
     <div class="row">
-      <div class="col-md-6">
-      <img src="smiley.gif" alt="recommended" height="100px" width="100px">
-    </div>
-    <div class="col-md-6">
+
+    <div class="col-md-8">
       <p>
-    <%=link_to("#{listing.specifications} in #{listing.country}", listing)%>
+      <%=link_to("#{listing.specifications} in #{listing.country}", listing)%>
       </p>
     <p><%= "Price : #{listing.cost}" %></p>
     </div>

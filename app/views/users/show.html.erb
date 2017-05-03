@@ -1,0 +1,11 @@
+<h1>This is user#show</h1>
+
+<%= image_tag(@user.avatar.url) %>
+
+<p><%= @user.first_name %></p>
+<p><%= @user.last_name %></p>
+<p><%= @user.country %></p>
+<p><%= @user.age %></p>
+<p><%= @user.email %></p>
+
+<%= link_to 'listings', root_url %>

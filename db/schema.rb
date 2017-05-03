@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428043438) do
+ActiveRecord::Schema.define(version: 20170503034830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,19 +32,23 @@ ActiveRecord::Schema.define(version: 20170428043438) do
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.json     "photos"
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string   "smoker"
-    t.string   "house"
-    t.string   "apartment"
-    t.string   "treehouse"
-    t.string   "tent"
-    t.string   "cave"
-    t.string   "villa"
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "listing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_taggings_on_listing_id", using: :btree
+    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "content"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,10 +63,13 @@ ActiveRecord::Schema.define(version: 20170428043438) do
     t.string   "gender"
     t.string   "country"
     t.integer  "age"
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end
 
   add_foreign_key "authentications", "users"
   add_foreign_key "listings", "users"
+  add_foreign_key "taggings", "listings"
+  add_foreign_key "taggings", "tags"
 end

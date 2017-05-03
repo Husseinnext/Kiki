@@ -1,0 +1,28 @@
+<h1>This is listing#show</h1>
+
+
+
+<%= form_for @listing do |form| %>
+  <%= form.label :specifications %>
+  <%= form.text_field :specifications %>
+  <%= form.label :country %>
+  <%= form.country_select :country %>
+  <%= form.label :cost %>
+  <%= form.number_field :cost %>
+  <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :content %>
+  <%= form.file_field :photos, multiple: true %>
+  <%= form.submit %>
+<% end %>
+
+
+
+<% @listing.photos.each do |image| %>
+    <%= image_tag image.url %>
+<% end %>
+
+<p><%= @listing.specifications %></p>
+<p><%= @listing.cost %></p>
+<p><%= @listing.country %></p>
+<% @listing.tags.each do |t| %>
+  <%= t.content %>
+<% end %>

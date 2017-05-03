@@ -59,3 +59,9 @@ gem 'figaro'
 gem 'omniauth'
 
 gem 'omniauth-facebook'
+
+gem 'carrierwave', '~> 1.0'
+
+gem 'fog'
+
+gem 'mini_magick', '~> 4.3'
