@@ -7,14 +7,14 @@ class ListingsController < ApplicationController
     def create
      @listings = current_user.listings.new(listing_params)
       if @listings.save
-         redirect_to root_path, notice: 'created'
+         redirect_to '/listings', notice: 'created'
       else
-         redirect_to root_path, notice: 'good luck in the next listing'
+         redirect_to '/listings', notice: 'good luck in the next listing'
       end
     end
 
     def new
-    @listing = Listing.new
+      @listing = Listing.new
     end
 
     def edit
@@ -24,7 +24,7 @@ class ListingsController < ApplicationController
   	def update
       @listing = Listing.find(params[:id])
         if @listing.update(listing_params)
-          redirect_to @listing
+          redirect_to @listing # '/listings/:id'
         else
           render 'edit'
         end
@@ -32,13 +32,13 @@ class ListingsController < ApplicationController
 
 
     def show
-    @listings = Listing.find(params[:id])
+    @listing = Listing.find(params[:id])
     end
 
     def delete
     end
 
   def listing_params
-    params.require(:listing).permit(:specifications, :cost, :country)
+    params.require(:listing).permit(:specifications, :cost, :country, {:tag_ids => []}, {:photos => []} )
   end
 end
