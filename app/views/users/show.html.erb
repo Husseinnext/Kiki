@@ -8,4 +8,34 @@
 <p><%= @user.age %></p>
 <p><%= @user.email %></p>
 
+
+<table>
+  <tr>
+    <th>The house</th>
+    <th> From </th>
+    <th> To </th>
+    <th> Total </th>
+    <th> DeBooking </th>
+  </tr>
+<% @reservations.each do |reservation| %>
+<tr>
+  <td><%= link_to listing.reservation.specifications, listing.reservation %></td>
+  <td><%= reservation.start_date%></td>
+  <td><%= reservation.end_day%></td>
+  <td><%= reservation.total_price %></td>
+  <td><%= link_to 'Cancel Reservation', reservation, method: :delete %></td>
+</tr>
+<% end %>
+</table>
+
+
+
+
+
+
+
+
+
+
+
 <%= link_to 'listings', root_url %>

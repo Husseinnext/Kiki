@@ -26,3 +26,5 @@
 <% @listing.tags.each do |t| %>
   <%= t.content %>
 <% end %>
+<br>
+<%= link_to "make a new reservation", new_listing_reservation_path(@listing) %>
