@@ -1,0 +1,13 @@
+<h1>Reservation</h1>
+
+
+<%= form_for [@listing, @reservation] do |f| %>
+<% if errors.present? %>
+<div>
+<%= errors %>
+</div>
+<% end %>
+<%= f.date_field :start_date %>
+<%= f.date_field :end_date %>
+<%= f.submit %>
+<% end %>

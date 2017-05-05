@@ -20,6 +20,7 @@
     <h1>THE LIST</h1>
     <% @listings.each do |listing| %>
     <div class="row">
+      <a href="/users/<%= listing.user.id %>"><%= listing.user.first_name %></a>
 
     <div class="col-md-8">
       <p>

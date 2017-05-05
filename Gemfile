@@ -65,3 +65,5 @@ gem 'carrierwave', '~> 1.0'
 gem 'fog'
 
 gem 'mini_magick', '~> 4.3'
+
+gem 'bootstrap-datepicker-rails'

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   include Clearance::User
   has_many :authentications
   has_many :listings
+  has_many :reservations
   mount_uploader :avatar, AvatarUploader
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
