@@ -6,7 +6,8 @@ class UsersController < Clearance::UsersController
       sign_in @user
       redirect_to user_path(current_user)
     else
-      render template: "users/new"
+      flash[:danger] = @user.errors.full_messages.join
+      redirect_to '/sign_up'
     end
   end
 

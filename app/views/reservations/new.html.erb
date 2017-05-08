@@ -2,9 +2,9 @@
 
 
 <%= form_for [@listing, @reservation] do |f| %>
-<% if errors.present? %>
+<% if @errors.present? %>
 <div>
-<%= errors %>
+<%= @errors %>
 </div>
 <% end %>
 <%= f.date_field :start_date %>

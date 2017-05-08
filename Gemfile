@@ -67,3 +67,5 @@ gem 'fog'
 gem 'mini_magick', '~> 4.3'
 
 gem 'bootstrap-datepicker-rails'
+
+gem 'sidekiq'

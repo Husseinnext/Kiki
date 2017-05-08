@@ -1,6 +1,8 @@
 <h1>This is user#show</h1>
 
+<% unless @user.avatar.url.nil? %>
 <%= image_tag(@user.avatar.url) %>
+<% end %>
 
 <p><%= @user.first_name %></p>
 <p><%= @user.last_name %></p>
@@ -11,19 +13,20 @@
 
 <table>
   <tr>
-    <th>The house</th>
+    <!-- <th>The house</th> -->
     <th> From </th>
     <th> To </th>
     <th> Total </th>
-    <th> DeBooking </th>
+    <!-- <th> DeBooking </th> -->
   </tr>
-<% @reservations.each do |reservation| %>
+
+<% @user.reservations.each do |reservation| %>
 <tr>
-  <td><%= link_to listing.reservation.specifications, listing.reservation %></td>
+  <!-- <td><%# link_to @listing.reservation.specifications, listing.reservation %></td> -->
   <td><%= reservation.start_date%></td>
-  <td><%= reservation.end_day%></td>
+  <td><%= reservation.end_date%></td>
   <td><%= reservation.total_price %></td>
-  <td><%= link_to 'Cancel Reservation', reservation, method: :delete %></td>
+  <td><%= link_to 'Cancel Reservation', 'listing/:listing_id/reservations/:id', method: :delete %></td>
 </tr>
 <% end %>
 </table>
