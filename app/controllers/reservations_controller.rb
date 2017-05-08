@@ -4,13 +4,14 @@ class ReservationsController < ApplicationController
 
     def index
       @reservation = Reservation.where(user_id: current_user.id)
-      @reservations = Reservation.all 
+      @reservations = Reservation.all
     end
 
     def create
      @reservation = current_user.reservations.new(reservation_params)
      @reservation.listing_id = params[:listing_id]
       if @reservation.save
+        ReservationmailerMailer.welcome_email(current_user).deliver_later
          redirect_to "/listings/#{params[:listing_id]}", notice: 'confirm'
       else
         @errors = @reservation.error.full_messages
